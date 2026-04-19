@@ -15,6 +15,10 @@ run/main_scene="uid://ems2rhwl1ht5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+Player=""
+
 [input]
 
 action_up={
