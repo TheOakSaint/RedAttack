@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bhuoa68i3mbg" path="res://assets/sprites/BaseEnemy.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://xg8jh68s76e8" path="res://scenes/enemy.gd" id="1_md0e3"]
+[ext_resource type="PackedScene" uid="uid://dxxud0lkkt1i5" path="res://scenes/health_component.tscn" id="3_4ra3w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 6.0
@@ -18,3 +19,10 @@ texture = ExtResource("1_7p1mj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2073960188]
 shape = SubResource("CircleShape2D_md0e3")
+
+[node name="HealthComponent" parent="." unique_id=1739199046 instance=ExtResource("3_4ra3w")]
+max_health = 10
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=184125517]
+process_callback = 0
+one_shot = true
