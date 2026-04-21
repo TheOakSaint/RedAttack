@@ -28,17 +28,17 @@ func _physics_process(delta: float) -> void:
 		var collision = get_slide_collision(i)
 		var body = collision.get_collider()
 		if body.is_in_group("Player"):
-			try_damage(damage, body)
+			try_damage(body)
 
-func try_damage(damage, body):
+func try_damage(body):
 	if damagetimer.is_stopped():
-		var health = body.get_node("HealthComponent")
-		health.take_damage(damage)
+		var Phealth = body.get_node("HealthComponent")
+		Phealth.take_damage(damage)
 		damagetimer.start(1.0/attack_speed)
 
 
 func _on_died():
 	print("died")
 
-func _on_health_changed(current, max):
-	print(str(current) + " / " + str(max))
+func _on_health_changed(current, maxH):
+	print(str(current) + " / " + str(maxH))

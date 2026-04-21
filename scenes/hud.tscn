@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dtg2o2c7q6ki3"]
+
+[ext_resource type="Script" uid="uid://cxjrwnpddlihk" path="res://scenes/health_bar.gd" id="1_ahhtf"]
+
+[sub_resource type="Theme" id="Theme_ahhtf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahhtf"]
+bg_color = Color(0.74, 0.05919999, 0.05919999, 1)
+
+[node name="HUD" type="Control" unique_id=1782913167]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBarContainer" type="MarginContainer" parent="." unique_id=1452460518]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="HealthBar" type="ProgressBar" parent="HealthBarContainer" unique_id=225563226]
+layout_mode = 2
+size_flags_vertical = 1
+theme = SubResource("Theme_ahhtf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ahhtf")
+step = 1.0
+show_percentage = false
+script = ExtResource("1_ahhtf")
+
+[node name="HealthBarText" type="Label" parent="HealthBarContainer/HealthBar" unique_id=84080142]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -15.0
+offset_right = 200.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1

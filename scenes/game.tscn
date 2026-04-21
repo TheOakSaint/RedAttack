@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c4ie2r4epdsj8" path="res://assets/sprites/atlas_walls_low-16x16.png" id="3_iywne"]
 [ext_resource type="Texture2D" uid="uid://c8x2mtf4vml25" path="res://assets/sprites/atlas_walls_high-16x32.png" id="4_p57ef"]
 [ext_resource type="PackedScene" uid="uid://b1ly665fk8pb0" path="res://scenes/enemy.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://dtg2o2c7q6ki3" path="res://scenes/hud.tscn" id="6_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5sy4"]
 texture = ExtResource("2_lbhrr")
@@ -327,3 +328,7 @@ tile_set = SubResource("TileSet_vtaks")
 [node name="Enemy" parent="." unique_id=1368483892 instance=ExtResource("5_iywne")]
 z_index = 1
 position = Vector2(100, 0)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2115665912]
+
+[node name="HUD" parent="UI" unique_id=1782913167 instance=ExtResource("6_p57ef")]

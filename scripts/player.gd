@@ -36,4 +36,4 @@ func _on_died():
 	print("died")
 
 func _on_health_changed(current, max):
-	print(str(current) + " / " + str(max))
+	pass
