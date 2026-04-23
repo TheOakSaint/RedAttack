@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b18sih1a7cbrv" path="res://assets/sprites/PlayerCircle.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bkchs6e38vyvo" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://dxxud0lkkt1i5" path="res://scenes/health_component.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://dadmrib0x5yi5" path="res://scenes/Guns/pistol.tscn" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 6.0
@@ -26,3 +27,5 @@ limit_bottom = 150
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="HealthComponent" parent="." unique_id=1739199046 instance=ExtResource("3_qhqgy")]
+
+[node name="Pistol" parent="." unique_id=928671497 instance=ExtResource("4_dqkch")]

@@ -12,6 +12,7 @@ extends CharacterBody2D
 func _ready() -> void:
 	health.died.connect(_on_died)
 	health.health_changed.connect(_on_health_changed)
+	add_to_group("damagable")
 
 func _physics_process(delta: float) -> void:
 	
@@ -39,6 +40,7 @@ func try_damage(body):
 
 func _on_died():
 	print("died")
+	queue_free()
 
 func _on_health_changed(current, maxH):
 	print(str(current) + " / " + str(maxH))
