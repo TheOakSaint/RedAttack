@@ -12,6 +12,7 @@ var use_sub_threads: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_process(false)
 
 func load_scene(_scene_path: String) -> void:

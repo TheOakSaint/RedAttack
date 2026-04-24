@@ -43,6 +43,7 @@ _data = {
 }
 
 [node name="LoadingScreen" type="CanvasLayer" unique_id=183215308 node_paths=PackedStringArray("animation_player")]
+layer = 10
 script = ExtResource("1_ep5rh")
 animation_player = NodePath("AnimationPlayer")
 

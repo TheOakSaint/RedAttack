@@ -8,6 +8,26 @@ signal player_died
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var gun : Node2D = $Pistol
 @onready var collider : CollisionShape2D = $CollisionShape2D
+@onready var camera : Camera2D = $Camera2D 
+var flash_tween: Tween
+
+func flash():
+	# Kill any existing flash
+	if flash_tween and flash_tween.is_running():
+		flash_tween.kill()
+
+	# Reset instantly (important!)
+	modulate = Color(1, 1, 1)
+
+	# Create new tween
+	flash_tween = create_tween()
+
+	# Flash to red quickly
+	flash_tween.tween_property(self, "modulate", Color(1, 0.3, 0.3), 0.05)
+
+	# Fade back to normal
+	flash_tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
+
 
 func _ready() -> void:
 	health.died.connect(_on_died)
@@ -45,5 +65,7 @@ func _on_died():
 	gun.hide()
 	#play_death_animation()
 
-func _on_health_changed(current, max):
-	pass
+func _on_health_changed(startH, current, max):
+	if startH - current > 0:
+		camera.shake_camera()
+		flash()

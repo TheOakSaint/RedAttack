@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_health_changed(health, maxHealth):
+func _on_health_changed(startH, health, maxHealth):
 	max_value = maxHealth
 	value = health
 	text.text = str(health) + " / " + str(maxHealth)

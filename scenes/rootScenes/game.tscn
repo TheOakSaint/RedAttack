@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c8x2mtf4vml25" path="res://assets/sprites/atlas_walls_high-16x32.png" id="5_r44ql"]
 [ext_resource type="PackedScene" uid="uid://b1ly665fk8pb0" path="res://scenes/enemy.tscn" id="6_pbeor"]
 [ext_resource type="PackedScene" uid="uid://dtg2o2c7q6ki3" path="res://scenes/hud.tscn" id="7_m575n"]
+[ext_resource type="PackedScene" uid="uid://xr3687acflhv" path="res://scenes/pause_menu.tscn" id="8_fmrad"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5sy4"]
 texture = ExtResource("3_hw3cu")
@@ -310,8 +311,12 @@ sources/3 = SubResource("TileSetAtlasSource_0tnpc")
 
 [node name="Game" type="Node2D" unique_id=1279746748]
 
-[node name="GameManager" parent="." unique_id=1577691626 instance=ExtResource("1_trvnc")]
+[node name="GameManager" parent="." unique_id=1577691626 node_paths=PackedStringArray("pause_menu") instance=ExtResource("1_trvnc")]
+process_mode = 3
 game_over_scene = &"uid://dmxsg0vr51ewy"
+game_scene = &"uid://ems2rhwl1ht5"
+title_screen_scene = &"uid://yhc57vo81bjj"
+pause_menu = NodePath("../UI/PauseMenu")
 
 [node name="Player" parent="." unique_id=1855283947 instance=ExtResource("2_fmrad")]
 z_index = 5
@@ -333,9 +338,11 @@ tile_set = SubResource("TileSet_vtaks")
 [node name="Enemy" parent="." unique_id=1368483892 groups=["damagable"] instance=ExtResource("6_pbeor")]
 z_index = 1
 position = Vector2(100, 0)
-damage = 3
-attack_speed = 50.0
+attack_speed = 2.0
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=2115665912]
 
 [node name="HUD" parent="UI" unique_id=1782913167 instance=ExtResource("7_m575n")]
+
+[node name="PauseMenu" parent="UI" unique_id=2103383579 instance=ExtResource("8_fmrad")]
+visible = false

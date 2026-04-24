@@ -12,9 +12,10 @@ func _ready():
 	health = max_health
 
 func take_damage(amount: int):
+	var startH = health
 	health -= amount
 	health = max(health, 0)
-	health_changed.emit(health, max_health)
+	health_changed.emit(startH, health, max_health)
 
 	if health == 0:
 		died.emit()

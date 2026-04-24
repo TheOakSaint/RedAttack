@@ -42,5 +42,5 @@ func _on_died():
 	print("died")
 	queue_free()
 
-func _on_health_changed(current, maxH):
+func _on_health_changed(startH, current, maxH):
 	print(str(current) + " / " + str(maxH))
