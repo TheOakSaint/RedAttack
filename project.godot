@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Red Attack"
-run/main_scene="uid://ems2rhwl1ht5"
+run/main_scene="uid://yhc57vo81bjj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneLoader="*uid://caakxbcbrkq3h"
 
 [global_group]
 

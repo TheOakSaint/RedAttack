@@ -2,8 +2,12 @@ extends CharacterBody2D
 
 
 const SPEED = 130.0
+signal player_died
 
 @onready var health : Node = $HealthComponent
+@onready var sprite : Sprite2D = $Sprite2D
+@onready var gun : Node2D = $Pistol
+@onready var collider : CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	health.died.connect(_on_died)
@@ -32,7 +36,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_died():
-	print("died")
+	player_died.emit()
+	set_process(false)
+	set_physics_process(false)
+	collider.disabled = true
+	sprite.hide()
+	gun.set_process(false)
+	gun.hide()
+	#play_death_animation()
 
 func _on_health_changed(current, max):
 	pass
