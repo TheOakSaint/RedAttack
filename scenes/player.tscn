@@ -31,3 +31,6 @@ shape = SubResource("CircleShape2D_g2els")
 [node name="HealthComponent" parent="." unique_id=1739199046 instance=ExtResource("3_qhqgy")]
 
 [node name="Pistol" parent="." unique_id=928671497 instance=ExtResource("4_dqkch")]
+damage = 10
+fire_rate = 4.0
+gun_mode = 1

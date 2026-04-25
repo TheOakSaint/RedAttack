@@ -10,3 +10,4 @@ script = ExtResource("1_x77fm")
 [node name="Muzzle" type="Marker2D" parent="Sprite2D" unique_id=22041982]
 
 [node name="Timer" type="Timer" parent="." unique_id=797666157]
+one_shot = true
