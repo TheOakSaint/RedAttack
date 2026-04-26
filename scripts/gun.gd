@@ -1,9 +1,13 @@
 extends Node2D
 
-@export var damage = 1
-@export_range(0.1, 60) var fire_rate : float = 1.0
+#@export var damage : float = 1.0
+#@export_range(0.1, 60) var fire_rate : float = 1.0
 var can_fire: bool = true
-@export var spread = 1.0
+#@export var spread :float = 1.0
+
+@export var gun_stats: WeaponStats
+
+@export var bullet_stats: BulletStats
 
 @onready var gun_sprite := $Sprite2D
 @onready var shoot_pos := $Sprite2D/Muzzle
@@ -11,13 +15,13 @@ var can_fire: bool = true
 
 var BulletScene : Resource
 
-enum FireMode {
-	SEMI_AUTO,
-	AUTO,
-	BURST
-}
+#enum FireMode {
+#	SEMI_AUTO,
+#	AUTO,
+#	BURST
+#}
 
-@export var gun_mode : FireMode
+#@export var gun_mode : FireMode
 
 
 var time_between = 0
@@ -35,9 +39,9 @@ func _process(delta: float) -> void:
 	
 	if not can_fire:
 		time_between += delta
-		can_fire = time_between >= 1.0 / fire_rate
+		can_fire = time_between >= 1.0 / gun_stats.current_fire_rate
 	
-	if gun_mode == FireMode.SEMI_AUTO and Input.is_action_just_pressed("left_click") and can_fire:
+	if gun_stats.current_fire_mode == gun_stats.FireMode.SEMI_AUTO and Input.is_action_just_pressed("left_click") and can_fire:
 		shoot(BulletScene)
 		
 		can_fire = false
@@ -45,7 +49,7 @@ func _process(delta: float) -> void:
 		
 		
 		
-	if gun_mode == FireMode.AUTO and Input.is_action_pressed("left_click") and can_fire:
+	if gun_stats.current_fire_mode == gun_stats.FireMode.AUTO and Input.is_action_pressed("left_click") and can_fire:
 		shoot(BulletScene)
 		can_fire = false
 		time_between = 0

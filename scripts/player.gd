@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 
-const SPEED = 130.0
+@export var player_stats: PlayerStats
+
+#const SPEED = 130.0
 signal player_died
 
 @onready var health : Node = $HealthComponent
@@ -16,7 +18,7 @@ func flash():
 	if flash_tween and flash_tween.is_running():
 		flash_tween.kill()
 
-	# Reset instantly (important!)
+	# Reset instantly 
 	modulate = Color(1, 1, 1)
 
 	# Create new tween
@@ -32,8 +34,9 @@ func flash():
 func _ready() -> void:
 	health.died.connect(_on_died)
 	health.health_changed.connect(_on_health_changed)
-
-func _physics_process(delta: float) -> void:
+	health.health_changed.connect(player_stats._on_health_changed)
+	player_stats.max_health_changed.connect(health._on_max_health_changed)
+func _physics_process(_delta: float) -> void:
 	# Add the gravity.
 	
 
@@ -41,17 +44,17 @@ func _physics_process(delta: float) -> void:
 	var directionH := Input.get_axis("action_left", "action_right")
 	var directionV := Input.get_axis("action_up", "action_down")
 	if directionH:
-		velocity.x = directionH * SPEED
+		velocity.x = directionH * player_stats.current_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, player_stats.current_speed)
 		
 	if directionV:
-		velocity.y = directionV * SPEED
+		velocity.y = directionV * player_stats.current_speed
 	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		velocity.y = move_toward(velocity.y, 0, player_stats.current_speed)
 	
 	if velocity.length() > 1:
-		velocity = velocity.normalized() * SPEED
+		velocity = velocity.normalized() * player_stats.current_speed
 	
 	move_and_slide()
 
@@ -65,7 +68,7 @@ func _on_died():
 	gun.hide()
 	#play_death_animation()
 
-func _on_health_changed(startH, current, max):
+func _on_health_changed(startH, current, _max_health):
 	if startH - current > 0:
 		camera.shake_camera()
 		flash()

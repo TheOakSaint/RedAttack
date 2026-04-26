@@ -7,18 +7,15 @@ extends ProgressBar
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.health.health_changed.connect(_on_health_changed)
-	max_value = player.health.max_health
-	value = player.health.health
-	text.text = str(player.health.health) + " / " + str(player.health.max_health)
+	max_value = player.player_stats.current_max_health
+	value = player.player_stats.current_health
+	
+	text.text = str(int(value)) + " / " + str(int(max_value))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
-
-func _on_health_changed(startH, health, maxHealth):
+func _on_health_changed(_startH, health, maxHealth):
 	max_value = maxHealth
 	value = health
-	text.text = str(health) + " / " + str(maxHealth)
+	text.text = str(int(health)) + " / " + str(int(maxHealth))
 	

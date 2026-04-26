@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmxsg0vr51ewy"]
 
-[ext_resource type="Script" uid="uid://dy8lntg02ehc6" path="res://scripts/game_over.gd" id="1_bv3xw"]
+[ext_resource type="Script" uid="uid://dy8lntg02ehc6" path="res://scripts/Scenes/game_over.gd" id="1_bv3xw"]
 
 [node name="GameOver" type="Control" unique_id=1915901872 node_paths=PackedStringArray("restart_button", "return_mm_button")]
 layout_mode = 3

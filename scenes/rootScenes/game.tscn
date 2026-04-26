@@ -2,12 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://b7wvheslbhmwe" path="res://scenes/game_manager.tscn" id="1_trvnc"]
 [ext_resource type="PackedScene" uid="uid://blml6g2anpef2" path="res://scenes/player.tscn" id="2_fmrad"]
+[ext_resource type="Script" uid="uid://bqp7cqyemjmmm" path="res://scripts/Stats/player_stats.gd" id="3_hujmv"]
 [ext_resource type="Texture2D" uid="uid://ccvfbsq8qyaom" path="res://assets/sprites/atlas_floor-16x16.png" id="3_hw3cu"]
 [ext_resource type="Texture2D" uid="uid://c4ie2r4epdsj8" path="res://assets/sprites/atlas_walls_low-16x16.png" id="4_hujmv"]
 [ext_resource type="Texture2D" uid="uid://c8x2mtf4vml25" path="res://assets/sprites/atlas_walls_high-16x32.png" id="5_r44ql"]
 [ext_resource type="PackedScene" uid="uid://b1ly665fk8pb0" path="res://scenes/enemy.tscn" id="6_pbeor"]
 [ext_resource type="PackedScene" uid="uid://dtg2o2c7q6ki3" path="res://scenes/hud.tscn" id="7_m575n"]
 [ext_resource type="PackedScene" uid="uid://xr3687acflhv" path="res://scenes/pause_menu.tscn" id="8_fmrad"]
+
+[sub_resource type="Resource" id="Resource_r44ql"]
+resource_local_to_scene = true
+script = ExtResource("3_hujmv")
+base_speed = 130.0
+base_max_health = 100.0
+metadata/_custom_type_script = "uid://bqp7cqyemjmmm"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5sy4"]
 texture = ExtResource("3_hw3cu")
@@ -320,6 +328,7 @@ pause_menu = NodePath("../UI/PauseMenu")
 
 [node name="Player" parent="." unique_id=1855283947 instance=ExtResource("2_fmrad")]
 z_index = 5
+player_stats = SubResource("Resource_r44ql")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1864075988]
 

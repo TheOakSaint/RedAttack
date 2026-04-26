@@ -1,9 +1,11 @@
 extends Node2D
 
-@export var speed := 2.0
-@export var lifetime := 0.8
-@export var damage := 1
-var velocity
+#@export var speed :float = 2.0
+#@export var lifetime : float = 0.8
+#@export var damage : float = 1.0
+
+@export var bullet_stats: BulletStats
+
 var direction := Vector2.ZERO
 
 @onready var timer : Timer = $Timer
@@ -18,15 +20,14 @@ func _ready() -> void:
 	look_at(position + direction)
 	
 	timer.connect("timeout", _on_timeout)
-	timer.start(lifetime)
+	timer.start(bullet_stats.current_lifetime)
 	
 	hitbox.connect("body_entered", _on_impact)
 
-func _process(delta: float) -> void:
-	position += direction * speed
+func _process(_delta: float) -> void:
+	position += direction * bullet_stats.current_speed
 
-func _physics_process(delta: float) -> void:
-	pass
+
 	
 func _on_impact(_body:Node) -> void:
 	if _body.is_in_group("damagable"):
@@ -38,7 +39,7 @@ func _on_timeout() -> void:
 
 func try_damage(body):
 	var health = body.get_node("HealthComponent")
-	health.take_damage(damage)
+	health.take_damage(bullet_stats.current_damage)
 	
 	
 	

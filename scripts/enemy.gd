@@ -2,12 +2,13 @@ extends CharacterBody2D
 
 
 @export var speed = 50.0
-@export var damage = 1
+@export var damage = 1.0
 @export var attack_speed = 1.5
 
 @onready var player :CharacterBody2D= get_tree().get_first_node_in_group("Player")
 @onready var health : Node = $HealthComponent
 @onready var damagetimer : Timer = $DamageTimer
+var flash_tween: Tween
 
 func _ready() -> void:
 	health.died.connect(_on_died)
@@ -44,3 +45,21 @@ func _on_died():
 
 func _on_health_changed(startH, current, maxH):
 	print(str(current) + " / " + str(maxH))
+	flash()
+	
+func flash():
+	# Kill any existing flash
+	if flash_tween and flash_tween.is_running():
+		flash_tween.kill()
+
+	# Reset instantly (important!)
+	modulate = Color(1, 1, 1)
+
+	# Create new tween
+	flash_tween = create_tween()
+
+	# Flash to red quickly
+	flash_tween.tween_property(self, "modulate", Color(2.0, 2.0, 2.0, 1.0), 0.05)
+
+	# Fade back to normal
+	flash_tween.tween_property(self, "modulate", Color(1, 1, 1), 0.05)

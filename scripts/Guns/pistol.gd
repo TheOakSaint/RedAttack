@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 
 func shoot(projectile: PackedScene):
 	var projectile_instance := projectile.instantiate()
+	projectile_instance.bullet_stats = bullet_stats.duplicate()
 	projectile_instance.position = shoot_pos.global_position
 	projectile_instance.direction = global_position.direction_to(get_global_mouse_position())
 	add_child(projectile_instance)

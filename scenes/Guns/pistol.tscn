@@ -2,11 +2,30 @@
 
 [ext_resource type="PackedScene" uid="uid://c42gi5dowg1e7" path="res://scenes/gun.tscn" id="1_a1bw4"]
 [ext_resource type="Script" uid="uid://ct1v2ljbhmg4n" path="res://scripts/Guns/pistol.gd" id="2_nnc8c"]
+[ext_resource type="Script" uid="uid://br4hgf0ig213g" path="res://scripts/Stats/weapon_stats.gd" id="3_2o5q0"]
 [ext_resource type="Texture2D" uid="uid://fucmx7c0m8d5" path="res://assets/sprites/3Pistol03.png" id="3_8gcot"]
+[ext_resource type="Script" uid="uid://doxou0su33c3" path="res://scripts/Stats/bullet_stats.gd" id="4_4lo7k"]
+
+[sub_resource type="Resource" id="Resource_4lo7k"]
+resource_local_to_scene = true
+script = ExtResource("3_2o5q0")
+base_spread = 1.0
+base_fire_rate = 6.0
+metadata/_custom_type_script = "uid://br4hgf0ig213g"
+
+[sub_resource type="Resource" id="Resource_wumh3"]
+resource_local_to_scene = true
+script = ExtResource("4_4lo7k")
+base_speed = 2.0
+base_lifetime = 0.8
+base_damage = 1.0
+metadata/_custom_type_script = "uid://doxou0su33c3"
 
 [node name="Pistol" unique_id=928671497 instance=ExtResource("1_a1bw4")]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("2_nnc8c")
+gun_stats = SubResource("Resource_4lo7k")
+bullet_stats = SubResource("Resource_wumh3")
 
 [node name="Sprite2D" parent="." index="0" unique_id=779031911]
 position = Vector2(15, 0)
